@@ -75,7 +75,45 @@ $terciaryColor: #1e89e2;
 		margin: 0;
 	}
 
+	.navbar-collapse {
+		background: $primaryColor;
+		border: $primaryColor;
+
+		.in {
+			background: $terciaryColor;
+			border: $terciaryColor;
+		}
+	}
+
 	.navbar-default {
+
+		.navbar-nav {
+			
+			li {
+				
+				a {
+					color: white;
+				}
+			}
+
+			.active {
+				
+				a {
+					color: white;
+					font-weight: bold;
+					background: $terciaryColor;
+				}
+			}
+
+			a {
+
+				&:hover {
+					color: white;
+					background: $terciaryColor;
+				}
+			}
+
+		}
 
 		.navbar-brand {
 			color: $secondaryColor;
@@ -89,24 +127,25 @@ $terciaryColor: #1e89e2;
 				color: white;
 			}
 
-			.navbar-toggle {
-				background: $primaryColor;
+		}	
+		
+		.navbar-toggle {
+			background: $primaryColor;
 
-				.icon-bar {
-					background: $secondaryColor;
-				}
-
-				&:focus {
-					background: $primaryColor;
-				}
-
-				&:hover {
-					background: $terciaryColor;
-				}
-
-
+			.icon-bar {
+				background: $secondaryColor;
 			}
+
+			&:focus {
+				background: $primaryColor;
+			}
+
+			&:hover {
+				background: $terciaryColor;
+			}
+
 		}
+		
 
 	}
 
