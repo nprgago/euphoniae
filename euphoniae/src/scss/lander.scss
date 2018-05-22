@@ -1,0 +1,85 @@
+$break-extrasmall: 400px;
+$break-small: 700px;
+$break-medium: 800px; 
+$break-mediumlarge: 900px;
+$break-large: 1200px; 
+
+.lander {
+
+	width: 100%;
+	display: block;
+	padding-top: 0;
+	padding-bottom: 40px;
+
+	.carrousel-container {
+		width:100%;
+
+		.carousel {
+			max-width: 900px;
+			margin: 0 auto;
+		}
+	}
+
+	.info {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		padding-top: 20px;
+		text-align: center;
+
+		span {
+			padding-top:20px;
+			width: 50%;
+			margin: 0 auto;
+			color:white;
+		}
+	}
+
+	
+	@media all and (max-width: $break-extrasmall) {
+
+		.info {
+			span {
+				width:100%;
+			}
+		}
+	}
+
+	
+	@media all and (min-width: $break-medium) {
+			
+		.info {
+			span {
+				width:25%;
+			}
+		}
+	}
+
+	@media all and (min-width: $break-mediumlarge) {
+			
+		padding-top: 20px;
+
+	}
+
+
+	@media all and (min-width: $break-large) {
+		
+		display: flex;
+
+		.carousel-container {
+			width: 80%;
+		}
+
+		.info {
+			padding-right: 20px;
+			padding-top: 10px; 
+			width:20%;
+
+			span {
+				width: 100%;
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+}

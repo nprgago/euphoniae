@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
+import Routes from './Routes';
 import logo from './logo.svg';
 import './scss/App.scss';
 
@@ -19,7 +20,8 @@ class App extends Component {
             <Navbar.Toggle/>
           </Navbar.Header>
         </Navbar>
-        <hr/>  
+        <hr/>
+        <Routes/>  
       </div>
     );
   }
