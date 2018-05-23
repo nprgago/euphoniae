@@ -1,0 +1,116 @@
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+     -moz-transform: translate($x, $y);
+      -ms-transform: translate($x, $y);
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+
+
+.Songs {
+	
+	width: 100%;
+	padding: 30px 0; 
+	display: flex;
+	flex-wrap: wrap;
+
+	
+
+	.list-group-item {
+		position: relative;
+		padding: 0px;
+		width: 22%;
+		margin: 0 auto;
+		margin-bottom: 20px;
+		border: none;
+		background-color: transparent;
+
+		.thumbnail {
+			opacity: 1;
+			display: block;
+			width: 100%;
+			height: auto;
+			backface-visibility: hidden;
+			border: none;
+			transition: .5s ease;
+			padding: 0px;
+			margin: 0;
+			background-color: transparent;
+
+			img {
+
+				box-shadow: 5px 5px 14px 0px rgba(0, 0, 0, 0.51);
+			}
+
+		}
+
+		.middle {
+			transition: .5s ease;
+			opacity: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			@include translate(-50%, -50%)
+			text-align: center;
+
+			.text {
+				color: white;
+
+				h3 {
+					font-size: 20px;
+				}
+
+				.home-buttons {
+					padding-top: 5px;
+				}
+			}
+
+		}
+
+		&:hover {
+
+			.thumbnail{
+				opacity: 0.3;
+			}
+
+			.middle {
+				opacity: 1;
+			}
+		}
+	}
+
+
+	@media all and (max-width: 450px) {
+		
+		.list-group-item {
+			width: 90%;
+		}
+		
+	}
+
+	@media all and (min-width: 451px) and (max-width: 799px) {
+		
+		.list-group-item {
+			width: 45%;
+		}
+		
+	}
+
+	@media all and (min-width: 800px) and (max-width: 999px) {
+		
+		.list-group-item {
+			width: 30%;
+		}
+		
+	}
+
+	@media all and (min-width: 1000px) {
+		
+		.list-group-item {
+			width: 22%;
+		}
+		
+	}
+
+
+}
