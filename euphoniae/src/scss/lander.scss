@@ -1,86 +1,112 @@
-$break-extrasmall: 400px;
-$break-small: 700px;
-$break-medium: 800px; 
-$break-mediumlarge: 900px;
-$break-large: 1200px; 
-
+$primaryColor: white;
+$secondaryColor: #e5e5e5;
+$largeFont: 120px;
+$mediumFont: 50px;
+$smallFont: 40px;
+$extraSmall: 30px;
+$superSmall: 20px;
 
 .lander {
-	width: 100%;
-	display: block;
-	padding-top: 0;
-	padding-bottom: 80px;
+	
+	padding: 10px 20px;
+	margin: 0 auto;
 
-
-	.carrousel-container {
-		width:100%;
-
-		.carousel {
-			max-width: 900px;
-			margin: 0 auto;
-		}
+	h1 {
+		font-size: $largeFont;
+		color: $primaryColor;
 	}
 
-	.info {
+	h2 {
+		width: 60%;
+		font-size: $mediumFont;
+		color: $secondaryColor;
+	}
+
+	h3 {
+		font-size: $extraSmall;
+		color: $secondaryColor;
+		font-weight: bold;
+	}
+
+	p {
+		padding-top: 20px;
+		font-size: $superSmall;
+		
+		color: $secondaryColor;
+	}
+
+	a {
+
+		&:focus, &:hover {
+			color: $primaryColor;
+		} 
+	}
+
+	.container {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		padding-top: 20px;
-		text-align: center;
+		padding: 60px 0;
 
-		span {
-			padding-top:20px;
-			width: 50%;
-			margin: 0 auto;
-			color:white;
-		}
-	}
+		.counter {
+			width: 25%; 
+			text-align: left;
 
-	
-	@media all and (max-width: $break-extrasmall) {
-
-		.info {
 			span {
-				width:100%;
+				font-size: $smallFont;
+				color: $primaryColor;
 			}
+
 		}
-	}
-
-	
-	@media all and (min-width: $break-medium) {
-			
-		.info {
-			span {
-				width:25%;
-			}
-		}
-	}
-
-	@media all and (min-width: $break-mediumlarge) {
-			
-		padding-top: 20px;
-
-	}
-
-
-	@media all and (min-width: $break-large) {
 		
-		display: flex;
+	}
 
-		.carousel-container {
-			width: 80%;
+		
+	
+	@media all and (max-width: 700px) {
+		
+
+		h1 {
+			font-size: 80px;
 		}
 
-		.info {
-			padding-right: 20px;
-			padding-top: 10px; 
-			width:20%;
+		h2 { 
+			width: 100%;
+			font-size: $extraSmall;
+		}
 
-			span {
+		.container {
+			padding-top: 0;
+
+			.counter {
 				width: 100%;
-				padding-top: 0;
-				padding-bottom: 0;
+				text-align:center;
+				padding-top: 60px;
 			}
 		}
 	}
+
+	@media all and (min-width: 600px) and (max-width: 900px) {
+		
+		h1 {
+			font-size: 80px;
+		}
+
+		h2 { 
+			width: 100%;
+			font-size: $extraSmall;
+		}
+
+
+		.container {
+			padding-top: 0;
+
+			.counter {
+				width: 50%;
+				text-align:center;
+				padding-top: 60px;
+			}
+		}
+	}
+
 }
