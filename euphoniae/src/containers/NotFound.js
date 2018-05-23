@@ -10,7 +10,7 @@ export default () =>
     <div className='error-message'>
     	
     	<h1>Oops</h1>
-    	<h2> We can't seem to fund the page you're looking for</h2>
+    	<h2> We can't seem to found the page you're looking for</h2>
     	<h3> Error code: 404</h3>
     	<p> Here are some helpful links instead </p>
     	<ul>

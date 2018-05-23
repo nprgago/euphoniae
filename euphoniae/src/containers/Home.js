@@ -79,9 +79,9 @@ class Home extends Component {
 		        this.setState( {favoriteSongs: favorites})
 		     }
    	 	});
-   	 }
+   	}
 
-   	 deleteFavoriteSong = async (event) => {
+   	deleteFavoriteSong = async (event) => {
 	    event.preventDefault();
 	    let val = parseInt(event.target.value);
 	    let deleteFavoriteUrl = 'https://songs-api-ubiwhere.now.sh/api/user-favorites/'
@@ -115,6 +115,9 @@ class Home extends Component {
 	    })
 	}
 
+
+
+
 	isSongInFavorites(SongID) {
 	    const favorited = this.state.favoriteSongs;
 	    let found = false;
@@ -129,6 +132,7 @@ class Home extends Component {
 	}
 
 	renderSongs() {
+	    console.log(this.state.songList);
 	    return(
 	      <ListGroup className='Songs'>
 	        
