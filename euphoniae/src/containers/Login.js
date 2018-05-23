@@ -10,7 +10,8 @@ class Login extends Component {
 		email: '',
 		password: '',
 		userToken: '',
-		userId: ''		
+		userId: '',
+		userName: ''		
 	}
 	
 	handleSumit = async (event) => {
@@ -46,7 +47,8 @@ class Login extends Component {
 				.then(response => response.json())
 				.then(data => { 
 					this.state.userId = data.id ;
-					this.props.userHasAuthenticated(true, this.state.userId, this.state.userToken);
+					this.state.userName = data.name;
+					this.props.userHasAuthenticated(true, this.state.userId, this.state.userToken, this.state.userName);
 					this.props.history.push('/');
 				})
 			}

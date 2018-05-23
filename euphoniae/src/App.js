@@ -11,19 +11,22 @@ class App extends Component {
   state = {
     isAuthenticated: false,
     userToken: '',
-    userId: ''
+    userId: '',
+    userName: ''
   }
 
-  userHasAuthenticated = (authenticated, userId, userToken) => {
+  userHasAuthenticated = (authenticated, userId, userToken, userName) => {
     
     authenticated = (typeof authenticated !== 'undefined') ? authenticated: true;
     userId = (typeof userId !== 'undefined') ? userId: '';
     userToken = (typeof userToken !== 'undefined') ? userToken: '';
+    userName = (typeof userName !== 'undefined') ? userName: '';
 
     this.setState({ 
       isAuthenticated: authenticated,
       userId: userId,
-      userToken: userToken
+      userToken: userToken,
+      userName: userName
     });
   }
 
@@ -38,7 +41,8 @@ class App extends Component {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated,
       userId: this.state.userId,
-      userToken: this.state.userToken
+      userToken: this.state.userToken,
+      userName: this.state.userName
     };
 
     return (
@@ -56,7 +60,7 @@ class App extends Component {
           <Navbar.Collapse>
             <Nav pullRight>
               {this.state.isAuthenticated
-                ? <NavItem onClick={this.handleLogout}>Logout</NavItem> 
+                ? <NavItem onClick={this.handleLogout}>Logout</NavItem>
                 : <Fragment>
                   <LinkContainer to='/Signup'>
                     <NavItem>Signup</NavItem>
