@@ -7,7 +7,35 @@ import logo from './logo.svg';
 import './scss/App.scss';
 
 class App extends Component {
+  
+  state = {
+    isAuthenticated: false,
+    userToken: '',
+    userId: ''
+  }
+
+  userHasAuthenticated = (authenticated, userId, userToken) => {
+    
+    authenticated = (typeof authenticated !== 'undefined') ? authenticated: true;
+    userId = (typeof userId !== 'undefined') ? userId: '';
+    userToken = (typeof userToken !== 'undefined') ? userToken: '';
+
+    this.setState({ 
+      isAuthenticated: authenticated,
+      userId: userId,
+      userToken: userToken
+    });
+  }
+
   render() {
+    
+    const childProps = {
+      isAuthenticated: this.state.isAuthenticated,
+      userHasAuthenticated: this.userHasAuthenticated,
+      userId: this.state.userId,
+      userToken: this.state.userToken
+    };
+
     return (
       <div className="App Container">
         <Navbar fluid collapseOnSelect>
@@ -32,7 +60,7 @@ class App extends Component {
           </Navbar.Collapse>
         </Navbar>
         <hr/>
-        <Routes/>  
+        <Routes childProps= {childProps}/>  
       </div>
     );
   }

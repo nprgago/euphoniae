@@ -14,8 +14,7 @@ class Lander extends Component {
 	render() {
 		
 		const images = this.importAll(require.context('../img', false, /\.(png|jpe?g|svg)$/));
-		console.log(images);
-
+		
 		return(
 			<div className='lander'>
 		        

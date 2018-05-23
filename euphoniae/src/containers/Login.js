@@ -6,22 +6,62 @@ import '../scss/Login.scss';
 class Login extends Component {
 
 	state = {
+		isLoading: false,
 		email: '',
-		password: '',		
+		password: '',
+		userToken: '',
+		userId: ''		
+	}
+	
+	handleSumit = async (event) => {
+		event.preventDefault();
+		this.setState({isLoading:true});
+
+		let LoginUrl = 'https://songs-api-ubiwhere.now.sh/api/auth/login';
+		let LoginBody = {'email': this.state.email, 'password': this.state.password};
+		let headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
+		let UserInfoUrl = 'https://songs-api-ubiwhere.now.sh/api/users/me';
+
+		await fetch(LoginUrl, {
+			method: 'POST', 
+			headers: headers, 
+			body: JSON.stringify(LoginBody)
+		})
+
+		.then(response => response.json())
+		.then(data => { 
+			if(data.status === 401) {
+				this.setState({isLoading: false});
+				alert(data.message);
+			} else {
+				this.state.userToken = data.token;
+				fetch(UserInfoUrl, {
+					method: 'GET',
+					headers : {
+					'Accept': 'application/json',
+    				'Content-Type': 'application/json',
+					'Authorization': 'Bearer ' + this.state.userToken
+				}
+				})
+				.then(response => response.json())
+				.then(data => { 
+					this.state.userId = data.id ;
+					this.props.userHasAuthenticated(true, this.state.userId, this.state.userToken);
+					this.props.history.push('/');
+				})
+			}
+		});
+		
+
 	}
 
-	
 	validation() {
 		return (
 			this.state.email.length > 0 && 
 			this.state.password.length > 0
 		);
 	}
-
-	handleSumit = (event) => {
-		event.preventDefault();
-	}
-
+	
 	handleChange = (event) => {
 		this.setState({
 			[event.target.id]: event.target.value
@@ -29,8 +69,8 @@ class Login extends Component {
 	}
 
 	render() {
+		
 		return(
-
 			<div className= 'Login'>
 				<form onSubmit={this.handleSumit}>
 					
