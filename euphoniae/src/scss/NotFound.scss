@@ -1,0 +1,100 @@
+$primaryColor: white;
+$secondaryColor: #e5e5e5;
+$smallSize: 20px;
+$mediumSize: 40px;
+$largeSize: 100px;
+
+.NotFound{
+	
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	padding: 20px 50px;
+	text-align: left;
+
+	
+	.error-message {
+		width: 50%;
+
+		h1 {
+			font-size: $largeSize;
+			color: $primaryColor;
+		}
+
+		h2 {
+			font-size: $mediumSize;
+			color: $secondaryColor;
+		}
+
+		h3 {
+			padding-top: 20px;
+			font-size: $smallSize;
+			color: $secondaryColor;
+		}
+
+		p {
+			font-size: $smallSize;
+			color: $primaryColor;
+			font-weight: bold;
+		}
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			color: $primaryColor;
+			font-size: 18px;
+			font-weight: 500;
+
+			li {
+				padding-top: 10px;
+
+				span {
+					
+					&:hover {
+						color: $secondaryColor;
+						cursor: pointer;
+					}
+				}	
+			}
+
+		}
+		
+	}
+
+	.error-image {
+		width: 50%;
+		text-align: center;
+
+		img {
+			margin: 0 auto;
+			width:80%;
+		}
+	} 
+
+	
+	@media all and (max-width: 1000px) {
+
+		.error-message, .error-image {
+			width: 100%;
+			
+			h2 {
+				font-size: 30px;
+			}
+
+			h3, p {
+				font-size: 15px;
+			}
+		}
+
+		.error-image {
+
+			img {
+				display: none; 
+				width: 50%;
+				max-width: 300px;
+			}
+
+		}
+	}
+}
