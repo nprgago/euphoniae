@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { FormGroup, Button, FormControl, Glyphicon, InputGroup} from "react-bootstrap";
+import { FormGroup, FormControl, Glyphicon, InputGroup} from "react-bootstrap";
+import { Link } from 'react-router-dom';
+import LoaderButton from '../components/LoaderButton';
 import logo from '../img/login-logo.svg';
 import '../scss/Login.scss';
 
@@ -107,15 +109,21 @@ class Login extends Component {
 						</InputGroup>
 					</FormGroup>
 					
-					<Button 
+					<LoaderButton 
 						block
 						bsStyle='primary'
 						bsSize='large'
 						type='submit'
 						disable={toString(!this.validation())}
-					>
-					Login
-					</Button>
+						isLoading = {this.state.isLoading}
+						text= 'Login'
+						loadingText= 'Loggin in ...'
+						className='login-button'
+					/>
+
+					<Link to='/signup'>
+						<p> Register </p>
+					</Link>
 
 				</form>
 			</div>
