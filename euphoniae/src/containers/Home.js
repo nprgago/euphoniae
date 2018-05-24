@@ -20,12 +20,22 @@ class Home extends Component {
 	componentDidMount() {
 
 		if(!this.props.isAuthenticated) {
-			return;
+			try {
+				if(this.props.isSessionStored()) {
+					let userInfo = this.props.retrieveSession();
+					this.props.userHasAuthenticated(true, userInfo.userId, userInfo.userToken, userInfo.userName)
+					if(!this.state.areSongsLoaded) {
+						this.retrieveSongs();
+						this.setState({isLoading: false})
+					}
+				} else {return}
+			} catch(e) {console.log(e.message)}
+
 		} else {
 			if(!this.state.areSongsLoaded) {
 				this.retrieveSongs();
 				this.setState({isLoading: false})
-			}		
+			}
 		}
 	}
 
@@ -115,9 +125,6 @@ class Home extends Component {
 	    })
 	}
 
-
-
-
 	isSongInFavorites(SongID) {
 	    const favorited = this.state.favoriteSongs;
 	    let found = false;
@@ -132,7 +139,6 @@ class Home extends Component {
 	}
 
 	renderSongs() {
-	    console.log(this.state.songList);
 	    return(
 	      <ListGroup className='Songs'>
 	        

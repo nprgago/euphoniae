@@ -15,25 +15,33 @@ class App extends Component {
     userName: ''
   }
 
-  userHasAuthenticated = (authenticated, userId, userToken, userName) => {
-    
-    authenticated = (typeof authenticated !== 'undefined') ? authenticated: true;
-    userId = (typeof userId !== 'undefined') ? userId: '';
-    userToken = (typeof userToken !== 'undefined') ? userToken: '';
-    userName = (typeof userName !== 'undefined') ? userName: '';
-
-    this.setState({ 
-      isAuthenticated: authenticated,
-      userId: userId,
-      userToken: userToken,
-      userName: userName
-    });
+  userHasAuthenticated = (authenticated=true, userId='', userToken='', userName='') => {
+      
+      this.setState({ 
+          isAuthenticated: authenticated,
+          userId: userId,
+          userToken: userToken,
+          userName: userName
+      });
   }
+
+  isSessionStored = () => {
+    let isStored =  sessionStorage.getItem('userToken') === null ? false : true;
+    return isStored;
+  }
+
+  retrieveSession = () => {
+    let sessionObject = {};
+    sessionObject.userId = sessionStorage.getItem('userId'); 
+    sessionObject.userName = sessionStorage.getItem('userName');
+    sessionObject.userToken = sessionStorage.getItem('userToken');
+    return sessionObject
+  };
 
   handleLogout = event => {
     this.userHasAuthenticated(false);
+    sessionStorage.clear();
   }
-
 
   render() {
     
@@ -42,7 +50,9 @@ class App extends Component {
       userHasAuthenticated: this.userHasAuthenticated,
       userId: this.state.userId,
       userToken: this.state.userToken,
-      userName: this.state.userName
+      userName: this.state.userName,
+      isSessionStored: this.isSessionStored,
+      retrieveSession: this.retrieveSession
     };
 
     return (

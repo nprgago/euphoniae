@@ -6,10 +6,7 @@ import '../scss/lander.scss';
 
 class Lander extends Component {
 	
-	
-
 	render() {
-		
 		
 		return(
 			<div className='lander'>

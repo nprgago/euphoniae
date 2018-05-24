@@ -50,6 +50,15 @@ class Login extends Component {
 				.then(data => { 
 					this.state.userId = data.id ;
 					this.state.userName = data.name;
+					
+					try {
+						sessionStorage.setItem( 'userId', this.state.userId);
+						sessionStorage.setItem( 'userName', this.state.userName);
+						sessionStorage.setItem( 'userToken', this.state.userToken);
+					} catch(e) {
+						console.log(e.message);
+					}
+
 					this.props.userHasAuthenticated(true, this.state.userId, this.state.userToken, this.state.userName);
 					this.props.history.push('/');
 				})
