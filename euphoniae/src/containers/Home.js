@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Button, 
   ListGroup, 
   ListGroupItem, 
-  Thumbnail, 
-  Glyphicon,
+  Thumbnail
 } from 'react-bootstrap';
 import Lander from '../components/lander';
 import '../scss/Home.scss'
@@ -162,7 +161,7 @@ class Home extends Component {
 			                  			Add to Favorites
 			                  		</Button>
 				                  	: <Button value={songObject.id} onClick={this.deleteFavoriteSong} bsStyle='default'>
-				                  		Unlike
+				                  		Remove
 				                  	</Button>}
 			                </p>
 			            </div>
