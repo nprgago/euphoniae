@@ -3,6 +3,7 @@ import { Button,
   ListGroup, 
   ListGroupItem, 
   Thumbnail, 
+  Glyphicon,
 } from 'react-bootstrap';
 import Lander from '../components/lander';
 import '../scss/Home.scss'
@@ -18,12 +19,11 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-
 		if(!this.props.isAuthenticated) {
 			try {
 				if(this.props.isSessionStored()) {
 					let userInfo = this.props.retrieveSession();
-					this.props.userHasAuthenticated(true, userInfo.userId, userInfo.userToken, userInfo.userName)
+					this.props.userHasAuthenticated(true, parseInt(userInfo.userId), userInfo.userToken, userInfo.userName)
 					if(!this.state.areSongsLoaded) {
 						this.retrieveSongs();
 						this.setState({isLoading: false})
@@ -68,8 +68,7 @@ class Home extends Component {
    	 	event.preventDefault();
    	 	let val = parseInt(event.target.value);
    	 	let addFavoriteUrl = 'https://songs-api-ubiwhere.now.sh/api/user-favorites/';
-   	 	let favoriteBody = {'UserId': this.props.userID, 'songId': val};
-
+   	 	let favoriteBody = {'UserId': this.props.userId, 'songId': val};
    	 	await fetch (addFavoriteUrl, {
    	 		method: 'POST',
    	 		headers: {
@@ -85,8 +84,8 @@ class Home extends Component {
 		        console.log(data.message);
 		    } else {
 		        let favorites = this.state.favoriteSongs;
-		        favorites.push({songId: val, userId: this.props.userID});
-		        this.setState( {favoriteSongs: favorites})
+		        favorites.push({songId: val, userId: this.props.userId});
+		        this.setState( {favoriteSongs: favorites} )
 		     }
    	 	});
    	}
@@ -94,8 +93,7 @@ class Home extends Component {
    	deleteFavoriteSong = async (event) => {
 	    event.preventDefault();
 	    let val = parseInt(event.target.value);
-	    let deleteFavoriteUrl = 'https://songs-api-ubiwhere.now.sh/api/user-favorites/'
-
+	    let deleteFavoriteUrl = 'https://songs-api-ubiwhere.now.sh/api/user-favorites/';
 	    await fetch(deleteFavoriteUrl, {
 	        method: 'DELETE',
 	        headers: {
@@ -114,34 +112,40 @@ class Home extends Component {
 		    } else {
 		        let favorites = this.state.favoriteSongs;
 		        let index = 0;
-		        for (let object of favorites) {
-		        if(object.songId !== val) {
-		        	index += 1;
-		        } 
-		    };
-		    favorites.splice(index, 1);
-		    this.setState({favoriteSongs: favorites})
-		    }
+		        
+		        try {
+		        	for (let object of favorites) {
+				        if(object.songId !== val) {
+				        	index += 1;
+			        	} else { return;}
+				    };
+		        } finally {
+		        	favorites.splice(index, 1);
+			    	this.setState( {favoriteSongs: favorites} )
+		        }
+
+			}
 	    })
 	}
 
 	isSongInFavorites(SongID) {
+	    
 	    const favorited = this.state.favoriteSongs;
 	    let found = false;
 	    if(favorited !== []) {
 		    for (let object of favorited) {
-				let found = object.songId === SongID ? true : false
-		        if (found) {return true}
+				let found = (object.songId === SongID) ? true : false;
+		        if (found) {return true};
 		    } 
 	    } else {
 	      	return false;
 	    } 
+
 	}
 
 	renderSongs() {
 	    return(
 	      <ListGroup className='Songs'>
-	        
 	        {this.state.songList.map(songObject => (
 	          	<ListGroupItem key={songObject.id}>
 		            <Thumbnail className='artist-image' target='_blank' alt={songObject.artist} src={songObject.imgUrl} />
@@ -153,23 +157,28 @@ class Home extends Component {
 			                  	<Button href={songObject.webUrl} target='_blank' bsStyle='default'> Details </Button>
 			                </p>
 			                <p className='home-buttons'>
-			                  	{!this.isSongInFavorites(songObject.id) ? <Button value={songObject.id} onClick={this.addFavoriteSong} bsStyle='default'> Favorite </Button>
-			                  	: <Button value={songObject.id} onClick={this.deleteFavoriteSong} bsStyle='default'> Unlike </Button>}
+			                  	{!this.isSongInFavorites(songObject.id) 
+			                  		? <Button value={songObject.id} onClick={this.addFavoriteSong} bsStyle='default'>
+			                  			Add to Favorites
+			                  		</Button>
+				                  	: <Button value={songObject.id} onClick={this.deleteFavoriteSong} bsStyle='default'>
+				                  		Unlike
+				                  	</Button>}
 			                </p>
 			            </div>
 	            	</div>
 	          	</ListGroupItem>
 	        ))}
-
 	      </ListGroup>
 	    )
 	  }
 
 	render() {		
+		
+
 		return (
 			
 			<div>
-				
 				{this.props.isAuthenticated ? this.renderSongs() : <Lander/>}
 			
 			</div>
