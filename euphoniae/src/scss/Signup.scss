@@ -12,6 +12,13 @@
 				color: white;
 			}
 		}
+
+		#Element {
+			display: none;
+			font-size: 20px;
+			font-weight: bold;
+			color: white;
+		}
 	}
 
 	h1 {
@@ -21,7 +28,7 @@
 	}
 
 	p {
-		padding-top: 20px;
+		padding-top: 5px;
 		text-align: center;
 		color: #c2d1f0;
 	}

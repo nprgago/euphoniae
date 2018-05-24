@@ -32,10 +32,10 @@ class Signup extends Component {
     .then(response => response.json())
     .then(data => {
       if(data.status === 400) {
-    		alert(data.message);
+        document.getElementById('Element').style.display = 'block';
         this.setState({isLoading: false });
     	} else {
-        alert('Register successful. Login');
+        document.getElementById('Element').style.display = 'none';
         this.props.history.push('/login')
     	}
     })
@@ -129,7 +129,7 @@ class Signup extends Component {
             text="Signup"
             loadingText="Signing up…"
           />
-
+          <p id='Element'>User already exists</p>
           <Link to='/Login'>
             <p> Already registered? </p>
           </Link>

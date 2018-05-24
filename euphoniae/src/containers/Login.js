@@ -35,8 +35,9 @@ class Login extends Component {
 		.then(data => { 
 			if(data.status === 401) {
 				this.setState({isLoading: false});
-				alert(data.message);
+				document.getElementById('Element').style.display = 'block';
 			} else {
+				document.getElementById('Element').style.display = 'none';
 				this.state.userToken = data.token;
 				fetch(UserInfoUrl, {
 					method: 'GET',
@@ -129,7 +130,7 @@ class Login extends Component {
 						loadingText= 'Loggin in ...'
 						className='login-button'
 					/>
-
+					<p id='Element'>Incorrect Email or Password</p>
 					<Link to='/signup'>
 						<p> Register </p>
 					</Link>
