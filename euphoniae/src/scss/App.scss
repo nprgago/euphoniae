@@ -3,8 +3,7 @@ $secondaryColor: #e5e5e5;
 $terciaryColor: #1e89e2;
 
 
-.App {
-
+body{
 	height: 100%;
 	background: url('../img/background.jpg') no-repeat center center fixed;
 	
@@ -13,99 +12,103 @@ $terciaryColor: #1e89e2;
 	-o-background-size:cover;
 	background-size:cover;
 
-	.logo {
-		height: 30px;
-		padding-bottom: 10px;
-	}
+	.App {
 
-	.title {
-		padding-left: 10px;
-		font-size: 1.5em;
-	}
-
-	hr {
-		width: 99%;
-		margin: 0 auto;
-		vertical-align: top;
-	}
-
-	.navbar {
-		background: $primaryColor;
-		border: none;
-		margin: 0;
-	}
-
-	.navbar-collapse {
-		background: $primaryColor;
-		border: $primaryColor;
-
-		.in {
-			background: $terciaryColor;
-			border: $terciaryColor;
+		.logo {
+			height: 30px;
+			padding-bottom: 10px;
 		}
-	}
 
-	.navbar-default {
+		.title {
+			padding-left: 10px;
+			font-size: 1.5em;
+		}
 
-		.navbar-nav {
+		hr {
+			width: 99%;
+			margin: 0 auto;
+			vertical-align: top;
+		}
+
+		.navbar {
+			background: $primaryColor;
+			border: none;
+			margin: 0;
+		}
+
+		.navbar-collapse {
+			background: $primaryColor;
+			border: $primaryColor;
+
+			.in {
+				background: $terciaryColor;
+				border: $terciaryColor;
+			}
+		}
+
+		.navbar-default {
+
+			.navbar-nav {
+				
+				li {
+					
+					a {
+						color: white;
+					}
+				}
+
+				.active {
+					
+					a {
+						color: white;
+						font-weight: bold;
+						background: $terciaryColor;
+					}
+				}
+
+				a {
+
+					&:hover {
+						color: white;
+						background: $terciaryColor;
+					}
+				}
+
+			}
+
+			.navbar-brand {
+				color: $secondaryColor;
+				font-weight: 500;
 			
-			li {
-				
-				a {
-					color: white;
+				&:focus {
+					color: $secondaryColor;
 				}
-			}
-
-			.active {
-				
-				a {
-					color: white;
-					font-weight: bold;
-					background: $terciaryColor;
-				}
-			}
-
-			a {
 
 				&:hover {
 					color: white;
+				}
+
+			}	
+			
+			.navbar-toggle {
+				background: $primaryColor;
+
+				.icon-bar {
+					background: $secondaryColor;
+				}
+
+				&:focus {
+					background: $primaryColor;
+				}
+
+				&:hover {
 					background: $terciaryColor;
 				}
+
 			}
+			
 
 		}
-
-		.navbar-brand {
-			color: $secondaryColor;
-			font-weight: 500;
-		
-			&:focus {
-				color: $secondaryColor;
-			}
-
-			&:hover {
-				color: white;
-			}
-
-		}	
-		
-		.navbar-toggle {
-			background: $primaryColor;
-
-			.icon-bar {
-				background: $secondaryColor;
-			}
-
-			&:focus {
-				background: $primaryColor;
-			}
-
-			&:hover {
-				background: $terciaryColor;
-			}
-
-		}
-		
 
 	}
 
