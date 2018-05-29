@@ -24,7 +24,7 @@ class Home extends Component {
 			try {
 				if(this.props.isSessionStored()) {
 					let userInfo = this.props.retrieveSession();
-					this.props.userHasAuthenticated(true, parseInt(userInfo.userId), userInfo.userToken, userInfo.userName)
+					this.props.userHasAuthenticated(true, parseInt(userInfo.userId, 10), userInfo.userToken, userInfo.userName)
 					if(!this.state.areSongsLoaded) {
 						this.retrieveSongs();
 						this.setState({isLoading: false})
@@ -67,7 +67,7 @@ class Home extends Component {
 
 	addFavoriteSong = async (event) => {
    	 	event.preventDefault();
-   	 	let val = parseInt(event.target.value);
+   	 	let val = parseInt(event.target.value, 10);
    	 	let addFavoriteUrl = 'https://songs-api-ubiwhere.now.sh/api/user-favorites/';
    	 	let favoriteBody = {'UserId': this.props.userId, 'songId': val};
    	 	await fetch (addFavoriteUrl, {
@@ -93,7 +93,7 @@ class Home extends Component {
 
    	deleteFavoriteSong = async (event) => {
 	    event.preventDefault();
-	    let val = parseInt(event.target.value);
+	    let val = parseInt(event.target.value, 10);
 	    let deleteFavoriteUrl = 'https://songs-api-ubiwhere.now.sh/api/user-favorites/';
 	    await fetch(deleteFavoriteUrl, {
 	        method: 'DELETE',
@@ -136,7 +136,7 @@ class Home extends Component {
 	    let found = false;
 	    if(favorited !== []) {
 		    for (let object of favorited) {
-				let found = (object.songId === SongID) ? true : false;
+				found = (object.songId === SongID) ? true : false;
 		        if (found) {return true};
 		    } 
 	    } else {
@@ -150,34 +150,37 @@ class Home extends Component {
 
 	renderSongs() {
 	    return(
-	      <ListGroup className='Songs'>
-	        {this.state.songList.map(songObject => (
-	          	<ListGroupItem key={songObject.id}>
-		            <Thumbnail className='artist-image' target='_blank' alt={songObject.artist} src={this.state.imgError ?  DefaultImage : songObject.imgUrl} onError={this.handleError} />
-		            <div className='middle'>
-			            <div className= 'text'>
-			                <h3> {songObject.title} </h3>
-			                <p> by {songObject.artist} </p>
-			                
-			                {!this.state.imgError ? 
-			                <p className='home-buttons'>
-			                  	<Button href={songObject.webUrl} target='_blank' bsStyle='default'> Details </Button>
-			                </p> : null}
+	      	<ListGroup className='Songs'>
+	      		{!this.state.isLoading  
+			        ? this.state.songList.map(songObject => (
+			          	<ListGroupItem key={songObject.id}>
+				            <Thumbnail className='artist-image' target='_blank' alt={songObject.artist} src={this.state.imgError ?  DefaultImage : songObject.imgUrl} onError={this.handleError} />
+				            <div className='middle'>
+					            <div className= 'text'>
+					                <h3> {songObject.title} </h3>
+					                <p> by {songObject.artist} </p>
+					                
+					                {!this.state.imgError ? 
+					                <p className='home-buttons'>
+					                  	<Button href={songObject.webUrl} target='_blank' bsStyle='default'> Details </Button>
+					                </p> : null}
 
-			                <p className='home-buttons'>
-			                  	{!this.isSongInFavorites(songObject.id) 
-			                  		? <Button value={songObject.id} onClick={this.addFavoriteSong} bsStyle='default'>
-			                  			Add to Favorites
-			                  		</Button>
-				                  	: <Button value={songObject.id} onClick={this.deleteFavoriteSong} bsStyle='default'>
-				                  		Remove
-				                  	</Button>}
-			                </p>
-			            </div>
-	            	</div>
-	          	</ListGroupItem>
-	        ))}
-	      </ListGroup>
+					                <p className='home-buttons'>
+					                  	{!this.isSongInFavorites(songObject.id) 
+					                  		? <Button value={songObject.id} onClick={this.addFavoriteSong} bsStyle='default'>
+					                  			Add to Favorites
+					                  		</Button>
+						                  	: <Button value={songObject.id} onClick={this.deleteFavoriteSong} bsStyle='default'>
+						                  		Remove
+						                  	</Button>}
+					                </p>
+					            </div>
+			            	</div>
+			          	</ListGroupItem>
+			        ))
+			       : null
+			    }
+	      	</ListGroup>
 	    )
 	  }
 
