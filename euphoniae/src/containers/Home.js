@@ -5,6 +5,7 @@ import { Button,
   Thumbnail
 } from 'react-bootstrap';
 import Lander from '../components/lander';
+import DefaultImage from '../img/default.jpg';
 import '../scss/Home.scss'
 
 
@@ -14,7 +15,8 @@ class Home extends Component {
 		isLoading: true,
 		areSongsLoaded: false,
 	    songList: [],
-	    favoriteSongs: []
+	    favoriteSongs: [],
+	    imgError: false,
 	}
 
 	componentDidMount() {
@@ -60,7 +62,7 @@ class Home extends Component {
 	    	}
 	    })
 	    .then(response => response.json())
-	    .then(data => { this.setState({favoriteSongs: data}) });
+	    .then(data => {this.setState({favoriteSongs: data})});	    
 	}
 
 	addFavoriteSong = async (event) => {
@@ -127,6 +129,7 @@ class Home extends Component {
 	    })
 	}
 
+	
 	isSongInFavorites(SongID) {
 	    
 	    const favorited = this.state.favoriteSongs;
@@ -139,22 +142,28 @@ class Home extends Component {
 	    } else {
 	      	return false;
 	    } 
-
 	}
+
+	handleError = () => {
+		this.setState( {imgError: true} );
+	} 
 
 	renderSongs() {
 	    return(
 	      <ListGroup className='Songs'>
 	        {this.state.songList.map(songObject => (
 	          	<ListGroupItem key={songObject.id}>
-		            <Thumbnail className='artist-image' target='_blank' alt={songObject.artist} src={songObject.imgUrl} />
+		            <Thumbnail className='artist-image' target='_blank' alt={songObject.artist} src={this.state.imgError ?  DefaultImage : songObject.imgUrl} onError={this.handleError} />
 		            <div className='middle'>
 			            <div className= 'text'>
 			                <h3> {songObject.title} </h3>
 			                <p> by {songObject.artist} </p>
+			                
+			                {!this.state.imgError ? 
 			                <p className='home-buttons'>
 			                  	<Button href={songObject.webUrl} target='_blank' bsStyle='default'> Details </Button>
-			                </p>
+			                </p> : null}
+
 			                <p className='home-buttons'>
 			                  	{!this.isSongInFavorites(songObject.id) 
 			                  		? <Button value={songObject.id} onClick={this.addFavoriteSong} bsStyle='default'>
