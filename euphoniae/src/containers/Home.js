@@ -189,28 +189,28 @@ class Home extends Component {
 							/>
 
 							<div className='middle'>
-								<div className= 'text'>
-									<h3> {songObject.title} </h3>
-									<p> by {songObject.artist} </p>
+								{!this.state.imgError 
+									? <p className='home-buttons'>
+										<Button href={songObject.webUrl} target='_blank' bsStyle='default'> Details </Button>
+									</p> 
+									: null
+								}
 
-									{!this.state.imgError 
-										? <p className='home-buttons'>
-											<Button href={songObject.webUrl} target='_blank' bsStyle='default'> Details </Button>
-										</p> 
-										: null
+								<p className='home-buttons'>
+									{!this.isSongInFavorites(songObject.id) 
+										? <Button bsStyle='danger' value={songObject.id} onClick={this.addFavoriteSong}>
+											Add to Favorites
+										</Button>
+										: <Button bsStyle='primary' value={songObject.id} onClick={this.deleteFavoriteSong}>
+											Remove
+										</Button>
 									}
-
-									<p className='home-buttons'>
-										{!this.isSongInFavorites(songObject.id) 
-											? <Button value={songObject.id} onClick={this.addFavoriteSong} bsStyle='default'>
-												Add to Favorites
-											</Button>
-											: <Button value={songObject.id} onClick={this.deleteFavoriteSong} bsStyle='default'>
-												Remove
-											</Button>
-										}
-									</p>
-								</div>
+								</p>
+							</div>
+								
+							<div className='song-info'>
+								<h3> {songObject.title} </h3>
+								<p> by {songObject.artist} </p>
 							</div>
 
 						</ListGroupItem>

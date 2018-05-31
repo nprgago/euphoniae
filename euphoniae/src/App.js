@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import Routes from './Routes';
-import logo from './logo.svg';
+import logo from './img/login-logo.svg';
 import './scss/App.scss';
 
 class App extends Component {
