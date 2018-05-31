@@ -55,13 +55,13 @@ class App extends Component {
       
         // Set props (authentication handling, user information and session storage) to be inherited  
         const childProps = {
-          isAuthenticated: this.state.isAuthenticated,
-          userHasAuthenticated: this.userHasAuthenticated,
-          userId: this.state.userId,
-          userToken: this.state.userToken,
-          userName: this.state.userName,
-          isSessionStored: this.isSessionStored,
-          retrieveSession: this.retrieveSession
+            isAuthenticated: this.state.isAuthenticated,
+            userHasAuthenticated: this.userHasAuthenticated,
+            userId: this.state.userId,
+            userToken: this.state.userToken,
+            userName: this.state.userName,
+            isSessionStored: this.isSessionStored,
+            retrieveSession: this.retrieveSession
         };
 
         return (

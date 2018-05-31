@@ -16,8 +16,8 @@ class Signup extends Component {
 
     // Signig In Mechanism  
     handleSumit = async (event) => {
-      	event.preventDefault();
-        
+        event.preventDefault();
+
         // Set state to loading and allow button loading animation to occur
         this.setState({ isLoading:true });
 
@@ -25,28 +25,28 @@ class Signup extends Component {
         const RegisterUrl = 'https://songs-api-ubiwhere.now.sh/api/auth/register';
         const RegisterBody = {'name': this.state.userName, 'email': this.state.email, 'password': this.state.password};
         const headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
-        
+
         await fetch(RegisterUrl, {
-          	method: 'POST',
-          	headers: headers,
-          	body: JSON.stringify(RegisterBody)
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(RegisterBody)
         })
 
         .then(response => response.json())
         .then(data => {
-            
+
             // If sign in was unsuccessful (code: 400)
             // display error message in the html body and
             // stop button loading animation
             if(data.status === 400) {
                 document.getElementById('Element').style.display = 'block';
                 this.setState({isLoading: false });
-          	} else {
+            } else {
                 // If sign in was successful hide error message
                 // and redirect user to login page 
                 document.getElementById('Element').style.display = 'none';
                 this.props.history.push('/login')
-          	}
+            }
         })
     }
 
@@ -73,7 +73,7 @@ class Signup extends Component {
         return(
             <div className='Signup'>
                 <form onSubmit={this.handleSumit}>
-                  
+
                     <h1>Signup</h1>
 
                     <FormGroup controlId="userName" bsSize="large">
@@ -102,7 +102,7 @@ class Signup extends Component {
                             />
                         </InputGroup>
                     </FormGroup>
-                    
+
                     <FormGroup controlId="password" bsSize="large">
                         <InputGroup className='labels'>
                             <InputGroup.Addon>
@@ -116,7 +116,7 @@ class Signup extends Component {
                             />
                           </InputGroup>
                     </FormGroup>
-                    
+
                     <FormGroup controlId="confirmPassword" bsSize="large">
                         <InputGroup className='labels'>
                             <InputGroup.Addon>
@@ -130,7 +130,7 @@ class Signup extends Component {
                             />
                         </InputGroup>
                     </FormGroup>
-                    
+
                     <LoaderButton
                         block
                         bsStyle='primary'
@@ -141,10 +141,10 @@ class Signup extends Component {
                         text="Signup"
                         loadingText="Signing up…"
                     />
-                    
+
                     <p id='Element'>User already exists</p>
-                    
-                    <Link to='/Login'> 
+
+                    <Link to='/Login'>
                         <p> Already registered? </p>
                     </Link>
 

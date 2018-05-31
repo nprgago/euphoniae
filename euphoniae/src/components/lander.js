@@ -10,17 +10,16 @@ class Lander extends Component {
 		
 		return(
 			<div className='lander'>
-		       	
-		       	<h1>More Music!</h1>
-		       	<h2>Discover the lastest songs of your favorites artists.</h2>
-		       	
-		       	<Link to='/signup'>
+
+				<h1>More Music!</h1>
+				<h2>Discover the lastest songs of your favorites artists.</h2>
+
+				<Link to='/signup'>
 					<p> Signup </p>
 				</Link>
 
-
-		       	<div className= 'container'>
-			        <div className='counter'>
+				<div className= 'container'>
+					<div className='counter'>
 						<CountUp start={0} end={1250} />
 						<h3> Songs </h3>
 					</div>
@@ -37,7 +36,7 @@ class Lander extends Component {
 						<h3> Happy Moments </h3>
 					</div>
 				</div>
-		    </div>
+			</div>
 		)
 	}
 }

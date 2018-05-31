@@ -8,6 +8,6 @@ rendered when matching route is found. Also takes all the props that
 we want to apply (in this case, the childProps). */
 
 export default ({ component: C, props: cProps, ...rest }) =>
-  	<Route {...rest} render={props => <C {...props} {...cProps} />} />;
+	<Route {...rest} render={props => <C {...props} {...cProps} />} />;
 
   
