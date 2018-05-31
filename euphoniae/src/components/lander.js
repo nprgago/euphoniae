@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import CountUp from 'react-countup';
+import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import LanderLogo from '../img/landerlogo.svg';
 import '../scss/lander.scss';
 
 
@@ -11,31 +12,35 @@ class Lander extends Component {
 		return(
 			<div className='lander'>
 
-				<h1>More Music!</h1>
-				<h2>Discover the lastest songs of your favorites artists.</h2>
-
-				<Link to='/signup'>
-					<p> Signup </p>
-				</Link>
-
-				<div className= 'container'>
-					<div className='counter'>
-						<CountUp start={0} end={1250} />
-						<h3> Songs </h3>
-					</div>
-					<div className='counter'>
-						<CountUp start={0} end={8000} />
-						<h3> Users </h3>
-					</div>
-					<div className='counter'>
-						<CountUp start={0} end={100} />
-						<h3> Shares </h3>
-					</div>
-					<div className='counter'>
-						<CountUp start={0} end={100} />
-						<h3> Happy Moments </h3>
+				<div className='lander-container'>
+					<div className='box info' >
+						<img alt='logo' src={LanderLogo} className='lander-logo'/>
+						<h1>More Music!</h1>
+						<h2>Discover the latest songs of your favorites artists.</h2>
 					</div>
 				</div>
+
+				<div className='lander-container'>
+					<div className='box call-to-action'>
+						
+						<Link to='/signup'>
+							<Button 
+								block
+								bsStyle='primary' 
+								bsSize='large'
+							> Sign Up </Button>
+						</Link>
+						<p> Already registered? </p>
+						<Link to='/login'>
+							<Button 
+								block
+								bsSize='large'
+							> Log In </Button>
+						</Link>
+					</div>
+				</div>
+
+				
 			</div>
 		)
 	}

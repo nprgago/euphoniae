@@ -105,7 +105,9 @@ class Login extends Component {
 			<div className= 'Login'>
 				<form onSubmit={this.handleSumit}>
 					
-					<img alt='logo' src={ logo } className='login-logo'/>
+					<Link to= '/'>
+						<img alt='logo' src={ logo } className='login-logo'/>
+					</Link>
 					<h1 className='login-title'>Login</h1>
 					<FormGroup controlId='email' bsSize='large'>
 						<InputGroup>

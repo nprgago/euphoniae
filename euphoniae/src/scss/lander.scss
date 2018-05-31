@@ -1,112 +1,113 @@
-$primaryColor: white;
-$secondaryColor: #e5e5e5;
-$largeFont: 120px;
-$mediumFont: 50px;
-$smallFont: 40px;
-$extraSmall: 30px;
-$superSmall: 20px;
+// Fonts
+$font-stack: Work Sans, sans-serif;
+
+// Size
+$extaLarge: 60px;
+$large: 40px;
+$medium: 25px;
+$extra-small: 15px;
+
+//weight
+$light-weight: 300;
+$xbold-weight: 800;
+
+// Color
+$primary: white;
+$secondary: #ebebe0;
 
 .lander {
-	
-	padding: 10px 20px;
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 60px;
 	margin: 0 auto;
 
-	h1 {
-		font-size: $largeFont;
-		color: $primaryColor;
-	}
-
-	h2 {
-		width: 60%;
-		font-size: $mediumFont;
-		color: $secondaryColor;
-	}
-
-	h3 {
-		font-size: $extraSmall;
-		color: $secondaryColor;
-		font-weight: bold;
-	}
-
-	p {
-		padding-top: 20px;
-		font-size: $superSmall;
-		
-		color: $secondaryColor;
-	}
-
-	a {
-
-		&:focus, &:hover {
-			color: $primaryColor;
-		} 
-	}
-
-	.container {
+	.lander-container {
 		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		padding: 60px 0;
+		text-align: center;
+		padding-bottom: 40px;
 
-		.counter {
-			width: 25%; 
-			text-align: left;
+		.info {
+			margin: 0 auto;
 
-			span {
-				font-size: $smallFont;
-				color: $primaryColor;
+			.lander-logo {
+				padding-bottom: 80px;
+				max-width: 250px;
 			}
 
+			h1 {
+				font: $large $font-stack;
+				font-weight: $xbold-weight;
+				text-transform: uppercase;
+				margin-top: auto;
+				color: $primary;
+			}
+
+			h2 {
+				padding-top: 10px;
+				font: $medium $font-stack;
+				font-weight: $light-weight;
+				margin-top: auto;
+				color: $secondary;
+			}
 		}
-		
+
+		.box {
+			width: 80%;
+		}
+
+		.call-to-action {
+
+			max-width: 320px;
+			padding-top: 60px;
+			margin: 0 auto;
+
+			p {
+				padding-top: 10px;
+				font: $extra-small $font-stack;
+				font-weight: $light-weight;
+				text-transform: uppercase;
+				color: $secondary;
+			}
+
+			
+			.btn {
+				border-radius: 20px;
+			}
+		}
 	}
 
-		
+	@media all and (min-width: 1200px) {
+		height: 100%;
+		padding-top: 200px;
+
+		.lander-container {
+			text-align: right;
+			margin-top: auto;
+			width: 50%;
+
+			.info {
+				
+				h1 {
+					font-size: $extaLarge;
+				}
+
+				h2 {
+					font-size: $large;
+				}
+			}
+
+			.call-to-action {
+				text-align: center;
+				margin-left: 50px ;
+
+				p {
+					padding-top: 20px;
+				}
+			}
+		}
+
+
+	}
+
 	
-	@media all and (max-width: 700px) {
-		
-
-		h1 {
-			font-size: 80px;
-		}
-
-		h2 { 
-			width: 100%;
-			font-size: $extraSmall;
-		}
-
-		.container {
-			padding-top: 0;
-
-			.counter {
-				width: 100%;
-				text-align:center;
-				padding-top: 60px;
-			}
-		}
-	}
-
-	@media all and (min-width: 600px) and (max-width: 900px) {
-		
-		h1 {
-			font-size: 80px;
-		}
-
-		h2 { 
-			width: 100%;
-			font-size: $extraSmall;
-		}
-
-
-		.container {
-			padding-top: 0;
-
-			.counter {
-				width: 50%;
-				text-align:center;
-				padding-top: 60px;
-			}
-		}
-	}
-
 }

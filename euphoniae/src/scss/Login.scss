@@ -1,3 +1,16 @@
+// Fonts
+$font-stack: Work Sans, sans-serif;
+
+// Size
+$large: 40px;
+$medium: 20px;
+
+// Color
+$primary: white;
+$secondary: #ebebe0;
+$tertiary: #337ab7;
+
+
 .Login {
 	
 	padding: 60px 0;
@@ -9,20 +22,21 @@
 
 		#Element {
 			display: none;
-			font-size: 20px;
+			font: $medium $font-stack;
 			font-weight: bold;
-			color: white;
+			color: $primary;
 		}
 
 		p {
 			padding-top: 5px;
+			font: $font-stack;
 			text-align: center;
-			color: #c2d1f0;
+			color: $secondary;
 		}
 
 		.login-title {
-			font-size: 40px;
-			color: white;
+			font: $large $font-stack;
+			color: $primary;
 			text-align: center;
 			padding-bottom: 40px;
 		}
@@ -35,9 +49,9 @@
 
 		.input-group {
 			.input-group-addon {
-				background: #337ab7;
-				border: #337ab7;
-				color: white;
+				background: $tertiary;
+				border: $tertiary;
+				color: $primary;
 			}
 		}
 	}
