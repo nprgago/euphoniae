@@ -6,6 +6,11 @@ import NotFound from "./containers/NotFound";
 import Login from './containers/Login';
 import Signup from './containers/Signup';
 
+/* This component handle our app routing.
+It uses 'Switch' component from react-router to render the first matching 
+route defined within it. It also uses 'appliedRoute' component to apply 
+on render the props passed in ('childProps'). */
+
 export default ({childProps}) =>
 	<Switch>
 		<AppliedRoute path='/' exact component={Home} props={childProps}/>
